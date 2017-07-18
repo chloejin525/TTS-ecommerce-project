@@ -1,0 +1,29 @@
+// Place all the styles related to the Cart controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.table-head {
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	border-bottom: solid 1px red; 
+	
+}
+
+.table-body {
+	text-align: center;
+	font-size: 14px;
+	border-bottom: solid 1px red; 
+
+}
+
+.checkout {
+	margin-left: 550px;
+}
+
+.order-item{
+	
+	li {
+		list-style: none;
+	}
+}

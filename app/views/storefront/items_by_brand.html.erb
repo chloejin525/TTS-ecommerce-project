@@ -1,0 +1,8 @@
+<h1>Here are our <%= @brand %> products</h1>
+<div class="row">
+  <% if @products.count == 0 %>
+    <%= render "nothing_found" %>
+  <% else %>
+    <%= render "productloop" %>
+  <% end %>
+</div>
