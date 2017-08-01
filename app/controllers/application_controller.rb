@@ -1,10 +1,20 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :all_categories, :all_brands
+  before_action :all_categories, :all_brands, :cart_quantity
   before_action :configure_permitted_parameters, if: :devise_controller?
   protected
-
   
+  #if some method is defined as helper_method, the view will be able to use the method (just like current_user)
+  helper_method :current_order
+
+  def current_order
+    if !session[:order_id].nil?
+      Order.find(session[:order_id])
+    else
+      Order.new
+    end
+  end
+
   def all_categories
     @all_categories = []
   	Category.order(:name).each do |c|
@@ -17,6 +27,13 @@ class ApplicationController < ActionController::Base
   	@all_brands = Product.pluck(:brand).sort.uniq
   end
 
+  def cart_quantity
+    #need to change here if no LineItem destroy all
+    @cart_quantity = 0
+    LineItem.all.each do |item|
+      @cart_quantity += item.quantity
+    end
+  end
   
 
   private

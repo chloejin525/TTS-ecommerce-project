@@ -1,8 +1,9 @@
 class StorefrontController < ApplicationController
   
-
+  
+  
   def all_items
-  	@products = Product.all
+  	@products = Product.where("quantity > ?", 0)
   end
 
   def items_by_category

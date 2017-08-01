@@ -1,30 +1,30 @@
 <h2>My Cart</h2>
 
-<div class="table">
-	<div class="row">
-	<div class="col-md-8 table-head">
-		<div class="col-md-3">Item</div>
-		<div class="col-md-3">Price</div>
-		<div class="col-md-3">Qty</div>
-		<div class="col-md-3">Subtotal</div>
-	</div>
-		<div class="col-md-4"></div>
-	</div>
+<div class="row table-head">
+<div>
+	<div class="col-md-2">Item</div>
+	<div class="col-md-2">Price</div>
+	<div class="col-md-2">Qty</div>
+	<div class="col-md-2">Subtotal</div>
+	<div class="col-md-4">Action</div>
+</div>
 	
-		<% @line_items.each do |line_item| %>
-		<div class="row">
-		<div class="col-md-8 table-body">
-			<div class="col-md-3"><%= link_to Product.find(line_item.product_id).name, product_path(line_item.product_id), class: "btn-link" %></div>
-			<div class="col-md-3"><%= number_to_currency line_item.product.price %></div>
-			<div class="col-md-3"><%= line_item.quantity %></div>
-			<div class="col-md-3"><%= number_to_currency line_item.line_item_total %></div>
-		</div>
-			<div class="col-md-4"></div>
-		</div>
-		<% end %>
-		
 </div>
 
-<div class ="checkout">
+<% @line_items.each do |line_item| %>
+<div class="row table-body">
+<div>
+	<div class="col-md-2"><%= link_to Product.find(line_item.product_id).name, product_path(line_item.product_id), class: "btn-link" %></div>
+	<div class="col-md-2"><%= number_to_currency line_item.product.price %></div>
+	<div class="col-md-2"><%= line_item.quantity %></div>
+	<div class="col-md-2"><%= number_to_currency line_item.line_item_total %></div>
+	<div class="col-md-4"><a href="#" class="btn btn-primary">Edit Quantity</a><a href="#" class="btn btn-primary">Delete</a></div>
+</div>
+	
+</div>
+<% end %>
+		
+
+<div class ="checkout pull-right">
   <%= link_to "Proceed to Checkout?", checkout_path, class: "btn btn-success", style: "color: #fff" %>
 </div>
